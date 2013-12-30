@@ -13,6 +13,8 @@ import android.widget.RemoteViews;
 public class MyWidgetProvider extends AppWidgetProvider {
     @Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        Log.w("onUpdate ", "Fired");
+        
 	    for (int i = 0; i < appWidgetIds.length; i++) {
 	        int appWidgetId = appWidgetIds[i];
 	        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
@@ -30,14 +32,20 @@ public class MyWidgetProvider extends AppWidgetProvider {
             intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
             
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
             remoteViews.setOnClickPendingIntent(R.id.update, pendingIntent);
             
             // Update view
             appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
 	    }
     }
-	  
+	
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+        
+        Log.w("onReceive ", "Fired");
+    }
 	  
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
