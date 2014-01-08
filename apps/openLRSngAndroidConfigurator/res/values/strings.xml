@@ -1,5 +1,13 @@
 <resources>
 
     <string name="app_name">openLRSng - Configurator</string>
-
+    <string-array name="tabs_array">
+    	<item>Connect</item>
+    	<item>TX</item>
+    	<item>RX</item>
+    	<item>About</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+	<string name="drawer_close">Close navigation drawer</string>
+	
 </resources>
