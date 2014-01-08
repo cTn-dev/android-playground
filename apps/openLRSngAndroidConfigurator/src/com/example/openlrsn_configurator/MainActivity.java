@@ -44,22 +44,17 @@ public class MainActivity extends Activity {
             public void onDrawerClosed(View view) {
                 Log.d("onDrawerClosed", "Fired");
                 
-                getActionBar().setTitle(Title);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
             
             public void onDrawerOpened(View drawerView) {
                 Log.d("onDrawerOpened", "Fired");
                 
-                getActionBar().setTitle(R.string.drawer_close);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
         DrawerLayout.setDrawerListener(DrawerToggle);
-        
-        if (savedInstanceState == null) {
-            selectItem(0);
-        }
+
         // Open drawer
         //DrawerLayout.openDrawer(GravityCompat.START);
         
@@ -107,6 +102,10 @@ public class MainActivity extends Activity {
     
     /* Swaps fragments in the main content view */
     private void selectItem(int position) {
+        Log.d("selectItem", Integer.toString(position));
+        
+        DrawerList.setItemChecked(position, true);
+        getActionBar().setTitle(TabTitles[position]);
         DrawerLayout.closeDrawer(DrawerList);
     }
     
